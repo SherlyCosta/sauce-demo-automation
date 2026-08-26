@@ -1,0 +1,7 @@
+node_modules/
+playwright-report/
+playwright-custom-report/
+test-results/
+reports/
+screenshots/
+auth/
