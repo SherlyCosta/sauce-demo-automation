@@ -3,8 +3,6 @@ import { PRODUCTS } from '../../data/products';
 import { CustomAssertions } from '../../utils/assertions';
 
 test.describe('E2E Flow 4: Remove Every Product and Attempt Checkout', () => {
-  test.slow(); // Marks test as slow and triples the timeout limit
-
   test('should prevent checkout and order placement after removing every product from cart', async ({
     inventoryPage,
     cartPage,

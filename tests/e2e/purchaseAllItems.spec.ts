@@ -2,8 +2,6 @@ import { test, expect } from '../../fixtures/page.fixture';
 import { CHECKOUT_DATA } from '../../data/checkoutData';
 
 test.describe('E2E Flow 3: Purchase All Items', () => {
-  test.slow(); // Marks test as slow and triples the timeout limit
-
   test('should add all products to cart and complete checkout', async ({
     inventoryPage,
     cartPage,

@@ -29,6 +29,7 @@ export default defineConfig({
     {
       name: 'chromium',
       dependencies: ['setup'],
+      testIgnore: /.*\.setup\.ts/,
       use: {
         ...devices['Desktop Chrome'],
         storageState: CONSTANTS.AUTH_FILE,

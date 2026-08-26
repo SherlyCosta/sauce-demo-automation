@@ -3,8 +3,6 @@ import { PRODUCTS } from '../../data/products';
 import { CHECKOUT_DATA } from '../../data/checkoutData';
 
 test.describe('E2E Flow 1: Purchase Single Item', () => {
-  test.slow(); // Marks test as slow and triples the timeout limit
-
   test('should complete purchase flow for a single item', async ({
     inventoryPage,
     cartPage,

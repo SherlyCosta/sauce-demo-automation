@@ -10,13 +10,13 @@ type TestData = {
 };
 
 export const testDataFixture = baseTest.extend<TestData>({
-  usersData: async ({ }, use) => {
+  usersData: async ({}, use) => {
     await use(USERS);
   },
-  productsData: async ({ }, use) => {
+  productsData: async ({}, use) => {
     await use(PRODUCTS);
   },
-  checkoutTestData: async ({ }, use) => {
+  checkoutTestData: async ({}, use) => {
     await use(CHECKOUT_DATA);
   },
 });

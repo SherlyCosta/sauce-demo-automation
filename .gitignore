@@ -4,4 +4,4 @@ playwright-custom-report/
 test-results/
 reports/
 screenshots/
-auth/
+auth/*.json

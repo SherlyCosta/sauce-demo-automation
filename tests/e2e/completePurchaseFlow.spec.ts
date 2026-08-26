@@ -3,8 +3,6 @@ import { PRODUCTS } from '../../data/products';
 import { CHECKOUT_DATA } from '../../data/checkoutData';
 
 test.describe('Complete End-to-End Purchase Flow', () => {
-  test.slow(); // Marks test as slow and triples the timeout limit
-
   test('should execute full end-to-end user checkout journey successfully', async ({
     inventoryPage,
     cartPage,
