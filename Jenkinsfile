@@ -20,6 +20,12 @@ pipeline {
                 checkout scm
             }
         }
+        stage('Check Node and npm') {
+            steps {
+                bat 'node --version'
+                bat 'npm --version'
+            }
+        }
 
         stage('Install Dependencies') {
             steps {
