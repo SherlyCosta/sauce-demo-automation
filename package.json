@@ -1,0 +1,33 @@
+{
+  "name": "playwright-saucedemo",
+  "version": "1.0.0",
+  "description": "Enterprise Playwright + TypeScript Automation Framework for SauceDemo",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:smoke": "npx playwright test --grep @smoke",
+    "test:regression": "npx playwright test",
+    "test:login": "npx playwright test tests/login",
+    "test:inventory": "npx playwright test tests/inventory",
+    "test:cart": "npx playwright test tests/cart",
+    "test:checkout": "npx playwright test tests/checkout",
+    "test:navigation": "npx playwright test tests/navigation",
+    "test:e2e": "npx playwright test tests/e2e",
+    "test:e2e:headed": "npx playwright test tests/e2e --headed",
+    "report": "npx playwright show-report"
+  },
+  "keywords": [
+    "playwright",
+    "typescript",
+    "saucedemo",
+    "automation",
+    "pom"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.50.0",
+    "@types/node": "^26.1.1",
+    "typescript": "^5.0.0"
+  }
+}
