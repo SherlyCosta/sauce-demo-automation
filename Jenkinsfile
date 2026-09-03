@@ -16,6 +16,11 @@ pipeline {
             choices: ['Chromium', 'All', 'Firefox', 'WebKit'],
             description: 'Select target browser project'
         )
+        choice(
+            name: 'ENVIRONMENT',
+            choices: ['Staging', 'Production', 'Other'],
+            description: 'Select target environment'
+        )
     }
 
     stages {
@@ -42,6 +47,7 @@ pipeline {
                 bat 'npx playwright install --with-deps'
             }
         }
+        
 
         stage('Run Tests') {
             steps {
@@ -70,14 +76,18 @@ pipeline {
                         testCommand = 'npx playwright test'
                     }
 
-                    if (params.BROWSER == 'All') {
-                        bat testCommand
-                    } else if (params.BROWSER == 'Chromium') {
-                        bat "${testCommand} --project=chromium"
-                    } else if (params.BROWSER == 'Firefox') {
-                        bat "${testCommand} --project=firefox"
-                    } else if (params.BROWSER == 'WebKit') {
-                        bat "${testCommand} --project=webkit"
+                    withEnv(["TEST_ENV=${params.ENVIRONMENT}"]) {
+
+                        if (params.BROWSER == 'All') {
+                            bat testCommand
+                        } else if (params.BROWSER == 'Chromium') {
+                            bat "${testCommand} --project=chromium"
+                        } else if (params.BROWSER == 'Firefox') {
+                            bat "${testCommand} --project=firefox"
+                        } else if (params.BROWSER == 'WebKit') {
+                            bat "${testCommand} --project=webkit"
+                        }
+
                     }
                 }
             }
