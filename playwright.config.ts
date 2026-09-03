@@ -8,6 +8,9 @@ const selectedEnvironment = process.env.TEST_ENV || 'Staging';
 const environmentConfig =
   ENVIRONMENTS[selectedEnvironment as keyof typeof ENVIRONMENTS];
 
+console.log(`Running tests against environment: ${selectedEnvironment}`);
+console.log(`Base URL: ${environmentConfig.BASE_URL}`);
+
 export default defineConfig({
   testDir: './',
   fullyParallel: true,
