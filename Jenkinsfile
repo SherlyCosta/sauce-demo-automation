@@ -77,6 +77,8 @@ pipeline {
                     }
 
                     withEnv(["TEST_ENV=${params.ENVIRONMENT}"]) {
+                        echo "Selected Environment: ${params.ENVIRONMENT}"
+                        echo "TEST_ENV: ${params.ENVIRONMENT}"
 
                         if (params.BROWSER == 'All') {
                             bat testCommand
