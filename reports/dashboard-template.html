@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,13 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        :root, html[data-theme="dark"] {
+        :root,
+        html[data-theme="dark"] {
             --bg-color: #0d1117;
             --card-bg: #161b22;
             --border-color: #30363d;
@@ -70,12 +74,27 @@
             --passed-active-bg: #ffffff;
         }
 
-        ::-webkit-scrollbar { width: 7px; height: 7px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
 
-        * { box-sizing: border-box; }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
 
         body {
             background-color: var(--bg-color);
@@ -88,7 +107,10 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        .dashboard-wrapper { max-width: 1440px; margin: 0 auto; }
+        .dashboard-wrapper {
+            max-width: 1440px;
+            margin: 0 auto;
+        }
 
         .header {
             display: flex;
@@ -103,7 +125,10 @@
             gap: 16px;
         }
 
-        .header-title i { font-size: 2.2rem; color: var(--pass-color); }
+        .header-title i {
+            font-size: 2.2rem;
+            color: var(--pass-color);
+        }
 
         .header h1 {
             margin: 0;
@@ -151,7 +176,9 @@
             box-shadow: var(--hover-shadow);
         }
 
-        .btn:active { transform: translateY(0); }
+        .btn:active {
+            transform: translateY(0);
+        }
 
         .browser-tabs-panel {
             background-color: var(--card-bg);
@@ -176,7 +203,11 @@
             letter-spacing: -0.01em;
         }
 
-        .browser-tabs { display: flex; gap: 10px; flex-wrap: wrap; }
+        .browser-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
 
         .browser-tab-btn {
             background-color: var(--tab-bg);
@@ -230,12 +261,29 @@
             box-shadow: var(--hover-shadow);
         }
 
-        .card-total { border-top: 3px solid var(--highlight); }
-        .card-pass { border-top: 3px solid var(--pass-color); }
-        .card-fail { border-top: 3px solid var(--fail-color); }
-        .card-skip { border-top: 3px solid var(--skip-color); }
-        .card-duration { border-top: 3px solid #79c0ff; }
-        .card-rate { border-top: 3px solid #a371f7; }
+        .card-total {
+            border-top: 3px solid var(--highlight);
+        }
+
+        .card-pass {
+            border-top: 3px solid var(--pass-color);
+        }
+
+        .card-fail {
+            border-top: 3px solid var(--fail-color);
+        }
+
+        .card-skip {
+            border-top: 3px solid var(--skip-color);
+        }
+
+        .card-duration {
+            border-top: 3px solid #79c0ff;
+        }
+
+        .card-rate {
+            border-top: 3px solid #a371f7;
+        }
 
         .card h2 {
             margin: 0 0 6px 0;
@@ -248,12 +296,29 @@
             gap: 10px;
         }
 
-        .card-total h2 { color: var(--highlight); }
-        .card-pass h2 { color: var(--pass-color); }
-        .card-fail h2 { color: var(--fail-color); }
-        .card-skip h2 { color: var(--skip-color); }
-        .card-duration h2 { color: #79c0ff; }
-        .card-rate h2 { color: #a371f7; }
+        .card-total h2 {
+            color: var(--highlight);
+        }
+
+        .card-pass h2 {
+            color: var(--pass-color);
+        }
+
+        .card-fail h2 {
+            color: var(--fail-color);
+        }
+
+        .card-skip h2 {
+            color: var(--skip-color);
+        }
+
+        .card-duration h2 {
+            color: #79c0ff;
+        }
+
+        .card-rate h2 {
+            color: #a371f7;
+        }
 
         .card p {
             margin: 0;
@@ -289,7 +354,11 @@
             flex-wrap: nowrap;
         }
 
-        .pie-chart-wrapper { flex: 1; min-width: 170px; width: 100%; }
+        .pie-chart-wrapper {
+            flex: 1;
+            min-width: 170px;
+            width: 100%;
+        }
 
         .chart-header {
             margin-top: 0;
@@ -300,7 +369,11 @@
             letter-spacing: -0.01em;
         }
 
-        .chart-canvas-wrapper { position: relative; height: 220px; width: 100%; }
+        .chart-canvas-wrapper {
+            position: relative;
+            height: 220px;
+            width: 100%;
+        }
 
         .pie-center-text {
             position: absolute;
@@ -331,12 +404,34 @@
             color: var(--text-main);
         }
 
-        .legend-color { width: 14px; height: 14px; border-radius: 4px; flex-shrink: 0; }
-        .legend-label { color: var(--text-main); }
-        .legend-count { color: var(--text-muted); font-weight: 600; margin-left: 2px; }
-        .pass-color { background-color: var(--pass-color); }
-        .fail-color { background-color: var(--fail-color); }
-        .skip-color { background-color: var(--skip-color); }
+        .legend-color {
+            width: 14px;
+            height: 14px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .legend-label {
+            color: var(--text-main);
+        }
+
+        .legend-count {
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-left: 2px;
+        }
+
+        .pass-color {
+            background-color: var(--pass-color);
+        }
+
+        .fail-color {
+            background-color: var(--fail-color);
+        }
+
+        .skip-color {
+            background-color: var(--skip-color);
+        }
 
         .suites-container {
             background-color: var(--card-bg);
@@ -368,15 +463,34 @@
             transition: background-color 0.18s ease;
         }
 
-        .suite-row:last-child { border-bottom: none; }
-        .suite-row:hover { background-color: var(--row-hover); }
-        .suite-row:hover .suite-title-icon { transform: translateX(3px); color: var(--highlight); }
+        .suite-row:last-child {
+            border-bottom: none;
+        }
 
-        .suite-title-icon { transition: transform 0.2s ease, color 0.2s ease; }
+        .suite-row:hover {
+            background-color: var(--row-hover);
+        }
 
-        .suite-info { display: flex; align-items: center; gap: 16px; }
+        .suite-row:hover .suite-title-icon {
+            transform: translateX(3px);
+            color: var(--highlight);
+        }
 
-        .suite-title { font-weight: 600; font-size: 0.92rem; color: var(--text-main); }
+        .suite-title-icon {
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .suite-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .suite-title {
+            font-weight: 600;
+            font-size: 0.92rem;
+            color: var(--text-main);
+        }
 
         .suite-file {
             font-size: 0.8rem;
@@ -385,11 +499,30 @@
             font-family: var(--mono-font);
         }
 
-        .suite-stats { display: flex; gap: 16px; font-size: 0.88rem; font-weight: 500; }
-        .stat-badge { display: flex; align-items: center; gap: 6px; }
-        .stat-passed { color: var(--pass-color); }
-        .stat-failed { color: var(--fail-color); }
-        .stat-skipped { color: var(--skip-color); }
+        .suite-stats {
+            display: flex;
+            gap: 16px;
+            font-size: 0.88rem;
+            font-weight: 500;
+        }
+
+        .stat-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .stat-passed {
+            color: var(--pass-color);
+        }
+
+        .stat-failed {
+            color: var(--fail-color);
+        }
+
+        .stat-skipped {
+            color: var(--skip-color);
+        }
 
         /* Failed Tests Section */
         .failed-tests-container {
@@ -414,7 +547,10 @@
             font-size: 0.98rem;
         }
 
-        .failed-content { display: flex; min-height: 400px; }
+        .failed-content {
+            display: flex;
+            min-height: 400px;
+        }
 
         .failed-sidebar {
             width: 290px;
@@ -432,7 +568,9 @@
             transition: background-color 0.15s ease;
         }
 
-        .failed-item:hover { background-color: var(--row-hover); }
+        .failed-item:hover {
+            background-color: var(--row-hover);
+        }
 
         .failed-item.active {
             background-color: var(--failed-active-bg);
@@ -557,7 +695,10 @@
             transition: all 0.18s ease;
         }
 
-        .tab:hover { color: var(--text-main); background-color: var(--tab-hover); }
+        .tab:hover {
+            color: var(--text-main);
+            background-color: var(--tab-hover);
+        }
 
         .tab.active {
             background-color: var(--active-tab-bg);
@@ -565,9 +706,16 @@
             font-weight: 600;
         }
 
-        .tab-content { margin-top: 10px; }
+        .tab-content {
+            margin-top: 10px;
+        }
 
-        .error-content-wrapper { display: flex; flex-direction: column; gap: 15px; width: 100%; }
+        .error-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
 
         .error-screenshot {
             width: 100%;
@@ -599,7 +747,8 @@
             font-weight: 600;
         }
 
-        .error-section p, .error-section pre {
+        .error-section p,
+        .error-section pre {
             margin: 0;
             font-size: 0.85rem;
             color: var(--text-main);
@@ -652,10 +801,21 @@
             transition: background-color 0.15s ease;
         }
 
-        .passed-test-row:last-child { border-bottom: none; }
-        .passed-test-row:hover { background-color: var(--row-hover); }
+        .passed-test-row:last-child {
+            border-bottom: none;
+        }
 
-        .passed-test-info { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
+        .passed-test-row:hover {
+            background-color: var(--row-hover);
+        }
+
+        .passed-test-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            min-width: 0;
+        }
 
         .passed-test-name {
             font-size: 0.88rem;
@@ -709,8 +869,13 @@
             color: var(--highlight);
         }
 
-        .footer-card-header.browser { color: var(--pass-color); }
-        .footer-card-header.execution { color: #a371f7; }
+        .footer-card-header.browser {
+            color: var(--pass-color);
+        }
+
+        .footer-card-header.execution {
+            color: #a371f7;
+        }
 
         .info-grid {
             display: grid;
@@ -719,8 +884,16 @@
             font-size: 0.85rem;
         }
 
-        .info-label { color: var(--text-muted); font-weight: 500; }
-        .info-value { color: var(--text-main); font-family: var(--mono-font); word-break: break-all; }
+        .info-label {
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .info-value {
+            color: var(--text-main);
+            font-family: var(--mono-font);
+            word-break: break-all;
+        }
 
         .bottom-bar {
             margin-top: 24px;
@@ -739,14 +912,33 @@
             font-size: 0.9rem;
         }
 
-        .empty-state i { font-size: 2.2rem; margin-bottom: 12px; display: block; opacity: 0.7; }
-        .hidden { display: none !important; }
+        .empty-state i {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+            display: block;
+            opacity: 0.7;
+        }
+
+        .hidden {
+            display: none !important;
+        }
 
         /* Print Styles */
         @media print {
-            body { padding: 12px; }
-            .btn, .header-actions { display: none !important; }
-            .card:hover, .suite-row:hover { transform: none; box-shadow: none; }
+            body {
+                padding: 12px;
+            }
+
+            .btn,
+            .header-actions {
+                display: none !important;
+            }
+
+            .card:hover,
+            .suite-row:hover {
+                transform: none;
+                box-shadow: none;
+            }
         }
 
         @media (max-width: 1100px) {
@@ -755,6 +947,7 @@
                 align-items: center;
                 text-align: center;
             }
+
             .legend-container {
                 flex-direction: row;
                 justify-content: center;
@@ -763,24 +956,43 @@
                 margin-top: 10px;
                 width: 100%;
             }
-            .summary-cards { grid-template-columns: repeat(3, 1fr); }
+
+            .summary-cards {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         @media (max-width: 900px) {
-            body { padding: 16px; }
-            .charts-row { grid-template-columns: 1fr; }
-            .failed-content { flex-direction: column; }
+            body {
+                padding: 16px;
+            }
+
+            .charts-row {
+                grid-template-columns: 1fr;
+            }
+
+            .failed-content {
+                flex-direction: column;
+            }
+
             .failed-sidebar {
                 width: 100%;
                 max-height: 250px;
                 border-right: none;
                 border-bottom: 1px solid var(--border-color);
             }
-            .summary-cards { grid-template-columns: repeat(2, 1fr); }
-            .footer-grid { grid-template-columns: 1fr; }
+
+            .summary-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <div class="dashboard-wrapper">
@@ -863,7 +1075,9 @@
                 </div>
             </div>
             <div class="chart-container">
-                <div class="chart-header">Execution Trend <span style="color:var(--text-muted); font-size: 0.85rem; font-weight:normal">(Last 10 Runs)</span></div>
+                <div class="chart-header">Execution Trend <span
+                        style="color:var(--text-muted); font-size: 0.85rem; font-weight:normal">(Last 10 Runs)</span>
+                </div>
                 <div class="chart-canvas-wrapper" style="height: 220px;">
                     <canvas id="trendChart"></canvas>
                 </div>
@@ -919,451 +1133,19 @@
     </div>
 
     <!-- Data Injection — replaced by generate-dashboard.js -->
-    <script id="report-data">window.__REPORT_DATA__ = {{REPORT_DATA}};</script>
-
-    <!-- Render Logic -->
-    <script>
-        let trendChartInstance = null;
-        let pieChartInstance = null;
-
-        function escapeHtml(str) {
-            if (!str) return '';
-            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-        }
-
-        function applyTheme(theme) {
-            document.documentElement.setAttribute('data-theme', theme);
-            document.body.setAttribute('data-theme', theme);
-
-            const themeIcon = document.getElementById('theme-icon');
-            const themeText = document.getElementById('theme-text');
-            if (themeIcon && themeText) {
-                if (theme === 'light') {
-                    themeIcon.className = 'fa-solid fa-sun';
-                    themeIcon.style.color = '#e3b341';
-                    themeText.textContent = 'Light Mode';
-                } else {
-                    themeIcon.className = 'fa-solid fa-moon';
-                    themeIcon.style.color = '#a371f7';
-                    themeText.textContent = 'Dark Mode';
-                }
-            }
-
-            const textColor = theme === 'light' ? '#656d76' : '#8b949e';
-            const gridColor = theme === 'light' ? '#e1e4e8' : '#30363d';
-            if (trendChartInstance) {
-                trendChartInstance.options.scales.y.grid.color = gridColor;
-                trendChartInstance.options.scales.y.ticks.color = textColor;
-                trendChartInstance.options.scales.x.ticks.color = textColor;
-                trendChartInstance.update();
-            }
-        }
-
-        function initTheme() {
-            const savedTheme = localStorage.getItem('reporter-theme');
-            const systemPrefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-            const initialTheme = savedTheme ? savedTheme : (systemPrefersLight ? 'light' : 'dark');
-            applyTheme(initialTheme);
-
-            if (window.matchMedia) {
-                window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', e => {
-                    if (!localStorage.getItem('reporter-theme')) {
-                        applyTheme(e.matches ? 'light' : 'dark');
-                    }
-                });
-            }
-
-            const toggleBtn = document.getElementById('theme-toggle-btn');
-            if (toggleBtn) {
-                toggleBtn.onclick = () => {
-                    const currentTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
-                    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-                    localStorage.setItem('reporter-theme', newTheme);
-                    applyTheme(newTheme);
-                };
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            initTheme();
-            const data = window.__REPORT_DATA__;
-
-            // Set report title
-            if (data.projectName) {
-                document.getElementById('report-subtitle').textContent = data.projectName + ' — Test Report';
-                document.title = data.projectName + ' — Playwright Test Report';
-            }
-
-            // Set report timestamp
-            const reportTime = data.timestamp || new Date().toISOString();
-            const reportDate = new Date(reportTime);
-            const timeStr = reportDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) + ', ' +
-                            reportDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-            document.getElementById('report-time').innerHTML = `<i class="fa-regular fa-calendar"></i> ${timeStr}`;
-            document.getElementById('bottom-time').textContent = `Report generated on ${timeStr}`;
-
-            // Build browser/project tabs
-            let projects = [];
-            const projectSet = new Set();
-            if (Array.isArray(data.suites)) {
-                data.suites.forEach(s => { if (s.project && s.project !== 'setup') projectSet.add(s.project); });
-            }
-            if (projectSet.size > 0) {
-                projects = Array.from(projectSet).map(id => {
-                    let name = id;
-                    const l = id.toLowerCase();
-                    if (l === 'chromium' || l.includes('chrome')) name = 'Chrome';
-                    else if (l === 'firefox') name = 'Firefox';
-                    else if (l === 'webkit' || l.includes('safari')) name = 'WebKit';
-                    else name = id.replace(/\b\w/g, c => c.toUpperCase());
-                    return { id, name };
-                });
-            } else {
-                projects = [{ id: 'all', name: 'All Tests' }];
-            }
-
-            function getBrowserIcon(label, id) {
-                const str = (label + ' ' + id).toLowerCase();
-                if (str.includes('chrome') || str.includes('chromium')) return '<i class="fa-brands fa-chrome" style="color: #4285F4;"></i>';
-                if (str.includes('firefox')) return '<i class="fa-brands fa-firefox-browser" style="color: #FF7139;"></i>';
-                if (str.includes('safari') || str.includes('webkit')) return '<i class="fa-brands fa-safari" style="color: #006CFF;"></i>';
-                return '<i class="fa-solid fa-globe" style="color: var(--highlight);"></i>';
-            }
-
-            let activeProjectId = projects[0] ? projects[0].id : 'all';
-            const tabsListContainer = document.getElementById('browser-tabs-list');
-            tabsListContainer.innerHTML = '';
-
-            projects.forEach((proj, idx) => {
-                const btn = document.createElement('button');
-                btn.className = `browser-tab-btn ${idx === 0 ? 'active' : ''}`;
-                btn.setAttribute('data-project', proj.id);
-                btn.innerHTML = `${getBrowserIcon(proj.name, proj.id)} <span>${proj.name}</span>`;
-                btn.onclick = () => switchBrowserTab(proj.id);
-                tabsListContainer.appendChild(btn);
-            });
-
-            function switchBrowserTab(projectId) {
-                activeProjectId = projectId;
-                document.querySelectorAll('.browser-tab-btn').forEach(btn => {
-                    btn.classList.toggle('active', btn.getAttribute('data-project') === projectId);
-                });
-
-                const isSingleOrAll = projects.length <= 1 || projectId === 'all';
-                const activeSuites = data.suites.filter(s =>
-                    s.project === projectId || (isSingleOrAll && (s.project !== 'setup'))
-                );
-                const activeFailedTests = data.failedTests.filter(f =>
-                    f.project === projectId || (isSingleOrAll && (f.project !== 'setup'))
-                );
-                const activePassedTests = data.passedTests.filter(p =>
-                    p.project === projectId || (isSingleOrAll && (p.project !== 'setup'))
-                );
-
-                let passedCount = 0, failedCount = 0, skippedCount = 0;
-                activeSuites.forEach(s => {
-                    passedCount += (s.passed || 0);
-                    failedCount += (s.failed || 0);
-                    skippedCount += (s.skipped || 0);
-                });
-
-                const totalCount = passedCount + failedCount + skippedCount;
-                const passRateVal = totalCount > 0 ? Math.round((passedCount / totalCount) * 100) : 0;
-                const passRateStr = `${passRateVal}%`;
-
-                document.getElementById('summary-total').textContent = totalCount;
-                document.getElementById('summary-passed').textContent = passedCount;
-                document.getElementById('summary-failed').textContent = failedCount;
-                document.getElementById('summary-skipped').textContent = skippedCount;
-                document.getElementById('summary-duration').textContent = data.summary.totalDuration || '0s';
-                document.getElementById('summary-rate').textContent = passRateStr;
-
-                document.getElementById('legend-passed').textContent = passedCount;
-                document.getElementById('legend-failed').textContent = failedCount;
-                document.getElementById('legend-skipped').textContent = skippedCount;
-                document.getElementById('pie-center-val').textContent = passRateStr;
-
-                if (pieChartInstance) {
-                    pieChartInstance.data.datasets[0].data = [passedCount, failedCount, skippedCount];
-                    pieChartInstance.update();
-                }
-
-                renderSuites(activeSuites);
-                renderFailedTests(activeFailedTests);
-                renderPassedTests(activePassedTests);
-                updateBrowserFooterInfo(projectId);
-            }
-
-            // Doughnut Chart
-            const ctxPie = document.getElementById('pieChart').getContext('2d');
-            pieChartInstance = new Chart(ctxPie, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Passed', 'Failed', 'Skipped'],
-                    datasets: [{
-                        data: [data.summary.passed, data.summary.failed, data.summary.skipped],
-                        backgroundColor: ['#238636', '#da3633', '#d29922'],
-                        borderWidth: 0,
-                        cutout: '72%'
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { display: false } }
-                }
-            });
-
-            // Line Trend Chart
-            const filledTrend = [...(data.trend || [0])];
-            while (filledTrend.length < 10) filledTrend.unshift(null);
-
-            const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-            const textColor = currentTheme === 'light' ? '#656d76' : '#8b949e';
-            const gridColor = currentTheme === 'light' ? '#e1e4e8' : '#30363d';
-
-            const ctxTrend = document.getElementById('trendChart').getContext('2d');
-            trendChartInstance = new Chart(ctxTrend, {
-                type: 'line',
-                data: {
-                    labels: Array.from({ length: 10 }, (_, i) => `Run ${i + 1}`),
-                    datasets: [{
-                        label: 'Pass Rate (%)',
-                        data: filledTrend,
-                        borderColor: '#238636',
-                        backgroundColor: 'rgba(35, 134, 54, 0.08)',
-                        borderWidth: 2,
-                        pointBackgroundColor: '#238636',
-                        pointBorderColor: '#fff',
-                        pointRadius: 4,
-                        spanGaps: true,
-                        fill: true,
-                        tension: 0.3
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: { min: 0, max: 100, grid: { color: gridColor }, ticks: { color: textColor, callback: v => v + '%' } },
-                        x: { grid: { display: false }, ticks: { color: textColor } }
-                    },
-                    plugins: { legend: { display: false } }
-                }
-            });
-
-            // Expand All functionality
-            let allExpanded = false;
-            document.getElementById('expand-all-btn').onclick = () => {
-                allExpanded = !allExpanded;
-                document.querySelectorAll('.suite-tests-block').forEach(el => {
-                    el.style.display = allExpanded ? 'block' : 'none';
-                });
-                const btn = document.getElementById('expand-all-btn');
-                btn.innerHTML = allExpanded
-                    ? '<i class="fa-solid fa-chevron-up"></i> Collapse All'
-                    : '<i class="fa-solid fa-chevron-down"></i> Expand All';
-            };
-
-            function renderSuites(suitesToRender) {
-                const suitesList = document.getElementById('suites-list');
-                suitesList.innerHTML = '';
-
-                if (!suitesToRender || suitesToRender.length === 0) {
-                    suitesList.innerHTML = `<div class="empty-state"><i class="fa-solid fa-folder-open"></i><div>No test suites executed for this browser.</div></div>`;
-                    return;
-                }
-
-                suitesToRender.forEach((suite, sIdx) => {
-                    const badges = [];
-                    if (suite.passed > 0) badges.push(`<span class="stat-badge stat-passed"><i class="fa-regular fa-circle-check"></i> ${suite.passed} passed</span>`);
-                    if (suite.failed > 0) badges.push(`<span class="stat-badge stat-failed"><i class="fa-regular fa-circle-xmark"></i> ${suite.failed} failed</span>`);
-                    if (suite.skipped > 0) badges.push(`<span class="stat-badge stat-skipped"><i class="fa-regular fa-circle-minus"></i> ${suite.skipped} skipped</span>`);
-
-                    let testsHtml = '';
-                    if (suite.tests && suite.tests.length > 0) {
-                        testsHtml = `<div class="suite-tests-block" id="suite-tests-${sIdx}" style="display: none; background: var(--subrow-bg); border-top: 1px solid var(--border-color);">`;
-                        suite.tests.forEach(test => {
-                            let icon = test.status === 'passed' ? '<i class="fa-regular fa-circle-check" style="color:var(--pass-color)"></i>' :
-                                       test.status === 'failed' ? '<i class="fa-regular fa-circle-xmark" style="color:var(--fail-color)"></i>' :
-                                       '<i class="fa-regular fa-circle-minus" style="color:var(--skip-color)"></i>';
-                            testsHtml += `
-                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; border-bottom: 1px solid var(--border-color);">
-                                    <div style="display: flex; align-items: center; gap: 10px;">${icon} <span style="font-size: 0.88rem;">${escapeHtml(test.title)}</span></div>
-                                    <div style="color: var(--text-muted); font-size: 0.8rem; font-family: var(--mono-font);">${test.duration}</div>
-                                </div>
-                            `;
-                        });
-                        testsHtml += '</div>';
-                    }
-
-                    const wrapper = document.createElement('div');
-                    wrapper.innerHTML = `
-                        <div class="suite-row" data-suite-idx="${sIdx}">
-                            <div class="suite-info">
-                                <i class="fa-solid fa-chevron-right suite-title-icon" style="color: var(--text-muted); font-size: 0.8rem;"></i>
-                                <div>
-                                    <div class="suite-title">${escapeHtml(suite.name)}</div>
-                                    <div class="suite-file">${escapeHtml(suite.file)}</div>
-                                </div>
-                            </div>
-                            <div class="suite-stats">${badges.join('')}</div>
-                        </div>
-                        ${testsHtml}
-                    `;
-
-                    const row = wrapper.querySelector('.suite-row');
-                    row.onclick = () => {
-                        const el = document.getElementById(`suite-tests-${sIdx}`);
-                        if (el) el.style.display = el.style.display === 'none' ? 'block' : 'none';
-                    };
-
-                    while (wrapper.firstChild) suitesList.appendChild(wrapper.firstChild);
-                });
-            }
-
-            function renderFailedTests(failedToRender) {
-                const failedSection = document.getElementById('failed-section');
-                const listEl = document.getElementById('failed-list');
-                const detailsEl = document.getElementById('failed-details-view');
-
-                listEl.innerHTML = '';
-                detailsEl.innerHTML = '';
-
-                if (!failedToRender || failedToRender.length === 0) {
-                    failedSection.classList.add('hidden');
-                    return;
-                }
-
-                failedSection.classList.remove('hidden');
-                document.getElementById('failed-count-title').textContent = failedToRender.length;
-
-                const renderDetails = (test) => {
-                    let screenshotHtml = test.screenshot
-                        ? `<img src="${test.screenshot}" alt="Error screenshot" />`
-                        : `<div class="empty-state"><i class="fa-regular fa-image"></i><div>No screenshot captured for this test</div></div>`;
-
-                    detailsEl.innerHTML = `
-                        <div class="failed-details-header-wrapper">
-                            <div class="failed-details-header">
-                                <div class="failed-details-title">
-                                    <span>${escapeHtml(test.name)}</span>
-                                    <span class="badge-fail">Failed</span>
-                                </div>
-                                <div class="failed-details-duration"><i class="fa-regular fa-clock"></i> ${test.duration}</div>
-                            </div>
-                            <div class="failed-details-filepath">
-                                <i class="fa-regular fa-file-code"></i> <span>${escapeHtml(test.file)}</span>
-                            </div>
-                        </div>
-                        <div class="tabs">
-                            <div class="tab active" data-target="content-screenshot"><i class="fa-solid fa-camera"></i> Screenshot</div>
-                            <div class="tab" data-target="content-error"><i class="fa-solid fa-circle-exclamation"></i> Error</div>
-                            <div class="tab" data-target="content-stacktrace"><i class="fa-solid fa-list"></i> Stack Trace</div>
-                        </div>
-                        <div id="content-screenshot" class="tab-content" style="display: block;">
-                            <div class="error-content-wrapper">
-                                <div class="error-screenshot">${screenshotHtml}</div>
-                            </div>
-                        </div>
-                        <div id="content-error" class="tab-content" style="display: none;">
-                            <div class="error-section">
-                                <pre>${escapeHtml(test.error || 'No error message available')}</pre>
-                            </div>
-                        </div>
-                        <div id="content-stacktrace" class="tab-content" style="display: none;">
-                            <div class="error-section">
-                                <pre style="border-color: var(--border-color); color: var(--text-main);">${escapeHtml(test.stackTrace || 'No stack trace available')}</pre>
-                            </div>
-                        </div>
-                    `;
-
-                    detailsEl.querySelectorAll('.tab').forEach(tab => {
-                        tab.onclick = () => {
-                            detailsEl.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                            detailsEl.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
-                            tab.classList.add('active');
-                            document.getElementById(tab.getAttribute('data-target')).style.display = 'block';
-                        };
-                    });
-                };
-
-                failedToRender.forEach((test, idx) => {
-                    const item = document.createElement('div');
-                    item.className = `failed-item ${idx === 0 ? 'active' : ''}`;
-                    item.innerHTML = `
-                        <div class="failed-item-title">${escapeHtml(test.name)}</div>
-                        <div class="failed-item-file">${escapeHtml(test.file)}</div>
-                        <div class="failed-item-status"><i class="fa-regular fa-circle-xmark"></i> Failed</div>
-                    `;
-                    item.onclick = () => {
-                        document.querySelectorAll('.failed-item').forEach(el => el.classList.remove('active'));
-                        item.classList.add('active');
-                        renderDetails(test);
-                    };
-                    listEl.appendChild(item);
-                });
-
-                if (failedToRender.length > 0) renderDetails(failedToRender[0]);
-            }
-
-            function renderPassedTests(passedToRender) {
-                const passedSection = document.getElementById('passed-section');
-                const listEl = document.getElementById('passed-list');
-                listEl.innerHTML = '';
-
-                if (!passedToRender || passedToRender.length === 0) {
-                    passedSection.classList.add('hidden');
-                    return;
-                }
-
-                passedSection.classList.remove('hidden');
-                document.getElementById('passed-count-title').textContent = passedToRender.length;
-
-                passedToRender.forEach(test => {
-                    listEl.innerHTML += `
-                        <div class="passed-test-row">
-                            <div class="passed-test-info">
-                                <i class="fa-regular fa-circle-check" style="color: var(--pass-color); flex-shrink: 0;"></i>
-                                <div style="min-width: 0; flex: 1;">
-                                    <div class="passed-test-name">${escapeHtml(test.name)}</div>
-                                    <div class="passed-test-file">${escapeHtml(test.file)}</div>
-                                </div>
-                            </div>
-                            <div class="passed-test-duration">${test.duration}</div>
-                        </div>
-                    `;
-                });
-            }
-
-            function updateBrowserFooterInfo(projectId) {
-                const bConfig = (data.browserConfigs && data.browserConfigs[projectId]) ? data.browserConfigs[projectId] : (data.browser || {});
-                document.getElementById('browser-info').innerHTML = `
-                    <div class="info-label">Browser</div><div class="info-value">${escapeHtml(bConfig.name || projectId)}</div>
-                    <div class="info-label">Headless</div><div class="info-value">${bConfig.headless !== undefined ? bConfig.headless : 'true'}</div>
-                    <div class="info-label">Viewport</div><div class="info-value">${escapeHtml(bConfig.viewport || '1280x720')}</div>
-                `;
-            }
-
-            // Environment Info
-            const envGrid = document.getElementById('env-info');
-            envGrid.innerHTML = '';
-            const envData = data.environment || {};
-            Object.entries(envData).forEach(([k, v]) => {
-                envGrid.innerHTML += `<div class="info-label">${escapeHtml(k.charAt(0).toUpperCase() + k.slice(1))}</div><div class="info-value">${escapeHtml(String(v))}</div>`;
-            });
-
-            // Execution Info
-            const execGrid = document.getElementById('execution-info');
-            execGrid.innerHTML = '';
-            const execData = data.execution || {};
-            Object.entries(execData).forEach(([k, v]) => {
-                execGrid.innerHTML += `<div class="info-label">${escapeHtml(k.charAt(0).toUpperCase() + k.slice(1))}</div><div class="info-value">${escapeHtml(String(v))}</div>`;
-            });
-
-            // Initial render
-            switchBrowserTab(activeProjectId);
-        });
+    <script id="report-data" type="application/json">
+{{REPORT_DATA}}
     </script>
+    <script>
+        try {
+            window.__REPORT_DATA__ = JSON.parse(document.getElementById('report-data').textContent);
+        } catch (e) {
+            window.__REPORT_DATA__ = null;
+        }
+    </script>
+
+    <!-- Render Logic — inlined by generate-dashboard.js from dashboard-render.js -->
+    <script src="dashboard-render.js"></script>
 </body>
+
 </html>

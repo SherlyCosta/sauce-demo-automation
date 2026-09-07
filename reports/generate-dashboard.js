@@ -450,7 +450,21 @@ const reportData = {
 
 let template = fs.readFileSync(templatePath, 'utf8');
 const reportDataJson = JSON.stringify(reportData);
-const dashboard = template.replace('{{REPORT_DATA}}', reportDataJson);
+
+// Read the external render script and inline it
+const renderScriptPath = path.join(__dirname, 'dashboard-render.js');
+let renderScript = '';
+if (fs.existsSync(renderScriptPath)) {
+    renderScript = fs.readFileSync(renderScriptPath, 'utf8');
+} else {
+    console.warn('  [WARN] dashboard-render.js not found — dashboard may not render correctly');
+}
+
+const inlinedRenderScript = `<script>\n${renderScript}\n</script>`;
+const dashboard = template
+    .replace('{{REPORT_DATA}}', reportDataJson)
+    .replace('<script src="dashboard-render.js"></script>', inlinedRenderScript)
+    .replace('{{RENDER_SCRIPT}}', renderScript);
 
 const dashboardOutputPath = path.join(outputDir, 'dashboard.html');
 fs.writeFileSync(dashboardOutputPath, dashboard, 'utf8');
