@@ -329,9 +329,11 @@ document.addEventListener('DOMContentLoaded', function() {
         var failedSection = document.getElementById('failed-section');
         var listEl = document.getElementById('failed-list');
         var detailsEl = document.getElementById('failed-details-view');
+        var printListEl = document.getElementById('failed-print-list');
 
         listEl.innerHTML = '';
         detailsEl.innerHTML = '';
+        if (printListEl) printListEl.innerHTML = '';
 
         if (!failedToRender || failedToRender.length === 0) {
             failedSection.classList.add('hidden');
@@ -391,6 +393,7 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         failedToRender.forEach(function(test, idx) {
+            // 1. Sidebar item for interactive screen browsing
             var item = document.createElement('div');
             item.className = 'failed-item' + (idx === 0 ? ' active' : '');
             item.innerHTML =
@@ -403,6 +406,57 @@ document.addEventListener('DOMContentLoaded', function() {
                 renderDetails(test);
             };
             listEl.appendChild(item);
+
+            // 2. Full card for PDF / Print view (every test gets its screenshot + error rendered)
+            if (printListEl) {
+                var printCard = document.createElement('div');
+                printCard.className = 'failed-print-card';
+
+                var screenshotPrintHtml = test.screenshot
+                    ? '<div class="failed-print-screenshot"><img src="' + test.screenshot + '" alt="Failure screenshot for ' + escapeHtml(test.name) + '" /></div>'
+                    : '<div class="empty-state"><i class="fa-regular fa-image"></i><div>No screenshot captured for this test</div></div>';
+
+                var errorBlock = test.error
+                    ? '<div class="failed-print-error-wrapper">' +
+                          '<div class="failed-print-section-title"><i class="fa-solid fa-circle-exclamation" style="color: var(--fail-color);"></i> Error Details</div>' +
+                          '<div class="failed-print-error"><pre>' + escapeHtml(test.error) + '</pre></div>' +
+                      '</div>'
+                    : '';
+
+                var traceText = (test.stackTrace || '').trim();
+                if (test.error && traceText.indexOf(test.error) !== -1) {
+                    traceText = traceText.replace(test.error, '').trim();
+                }
+
+                var stackBlock = traceText
+                    ? '<div class="failed-print-stack-wrapper">' +
+                          '<div class="failed-print-section-title"><i class="fa-solid fa-list" style="color: var(--text-muted);"></i> Stack Trace / Context</div>' +
+                          '<div class="failed-print-stacktrace"><pre>' + escapeHtml(traceText) + '</pre></div>' +
+                      '</div>'
+                    : '';
+
+                printCard.innerHTML =
+                    '<div class="failed-print-header">' +
+                        '<div>' +
+                            '<div class="failed-print-title">' +
+                                '<span>' + (idx + 1) + '. ' + escapeHtml(test.name) + '</span>' +
+                                '<span class="badge-fail">Failed</span>' +
+                            '</div>' +
+                            '<div class="failed-print-meta">' +
+                                '<span class="failed-print-filepath"><i class="fa-regular fa-file-code"></i> ' + escapeHtml(test.file) + '</span>' +
+                                '<span><i class="fa-regular fa-clock"></i> ' + test.duration + '</span>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="failed-print-body">' +
+                        '<div class="failed-print-section-title"><i class="fa-solid fa-camera" style="color: var(--highlight);"></i> Screenshot</div>' +
+                        screenshotPrintHtml +
+                        errorBlock +
+                        stackBlock +
+                    '</div>';
+
+                printListEl.appendChild(printCard);
+            }
         });
 
         if (failedToRender.length > 0) renderDetails(failedToRender[0]);

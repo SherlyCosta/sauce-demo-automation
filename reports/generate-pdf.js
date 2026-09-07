@@ -82,8 +82,18 @@ async function generatePdf() {
             timeout: 60000
         });
 
-        // Wait for charts to render
+        // Wait for charts and images (including failure screenshots) to render
         await page.waitForTimeout(3000);
+        await page.evaluate(async () => {
+            const images = Array.from(document.images);
+            await Promise.all(
+                images
+                    .filter(img => !img.complete)
+                    .map(img => new Promise(resolve => {
+                        img.onload = img.onerror = resolve;
+                    }))
+            );
+        });
 
         // Ensure output directory exists
         const outputDirPath = path.dirname(outputPath);
