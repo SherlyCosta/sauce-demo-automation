@@ -79,6 +79,8 @@ pipeline {
                         echo "Selected Environment: ${params.ENVIRONMENT}"
                         echo "TEST_ENV: ${params.ENVIRONMENT}"
 
+                    catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+
                         if (params.BROWSER == 'All') {
                             bat testCommand
                         } else if (params.BROWSER == 'Chromium') {
@@ -88,11 +90,12 @@ pipeline {
                         } else if (params.BROWSER == 'WebKit') {
                             bat "${testCommand} --project=webkit"
                         }
-
                     }
+
                 }
             }
         }
+    }
 
         stage('Generate Reports') {
             steps {
