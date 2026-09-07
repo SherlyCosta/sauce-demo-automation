@@ -1,7 +1,9 @@
 node_modules/
 playwright-report/
-playwright-custom-report/
 test-results/
-reports/
-screenshots/
 auth/*.json
+
+# Generated report outputs (recreated each build)
+reports/dashboard.html
+reports/test-report.pdf
+reports/run-history.json

@@ -18,7 +18,10 @@
     "test:e2e:headed": "npx playwright test tests/e2e --headed",
     "typecheck": "tsc --noEmit",
     "install:browsers": "npx playwright install --with-deps chromium",
-    "report": "npx playwright show-report"
+    "report": "npx playwright show-report",
+    "report:dashboard": "node reports/generate-dashboard.js",
+    "report:pdf": "node reports/generate-pdf.js",
+    "report:generate": "npm run report:dashboard && npm run report:pdf"
   },
   "keywords": [
     "playwright",

@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        PATH = "C:\\Program Files\\nodejs;${env.PATH}"
+    }
+
     parameters {
         choice(
             name: 'TEST_SUITE',
@@ -11,6 +15,11 @@ pipeline {
             name: 'BROWSER',
             choices: ['Chromium', 'All', 'Firefox', 'WebKit'],
             description: 'Select target browser project'
+        )
+        choice(
+            name: 'ENVIRONMENT',
+            choices: ['Staging', 'Production', 'Other'],
+            description: 'Select target environment'
         )
     }
 
@@ -66,14 +75,43 @@ pipeline {
                         testCommand = 'npx playwright test'
                     }
 
-                    if (params.BROWSER == 'All') {
-                        bat testCommand
-                    } else if (params.BROWSER == 'Chromium') {
-                        bat "${testCommand} --project=chromium"
-                    } else if (params.BROWSER == 'Firefox') {
-                        bat "${testCommand} --project=firefox"
-                    } else if (params.BROWSER == 'WebKit') {
-                        bat "${testCommand} --project=webkit"
+                    withEnv(["TEST_ENV=${params.ENVIRONMENT}"]) {
+                        echo "Selected Environment: ${params.ENVIRONMENT}"
+                        echo "TEST_ENV: ${params.ENVIRONMENT}"
+
+                    catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+
+                        if (params.BROWSER == 'All') {
+                            bat testCommand
+                        } else if (params.BROWSER == 'Chromium') {
+                            bat "${testCommand} --project=chromium"
+                        } else if (params.BROWSER == 'Firefox') {
+                            bat "${testCommand} --project=firefox"
+                        } else if (params.BROWSER == 'WebKit') {
+                            bat "${testCommand} --project=webkit"
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+
+        stage('Generate Reports') {
+            steps {
+                script {
+                    withEnv([
+                        "TEST_ENV=${params.ENVIRONMENT}",
+                        "BROWSER=${params.BROWSER}",
+                        "TEST_SUITE=${params.TEST_SUITE}",
+                        "PROJECT_NAME=SauceDemo",
+                        "BRANCH_NAME=${env.GIT_BRANCH ?: env.BRANCH_NAME ?: 'unknown'}"
+                    ]) {
+                        echo 'Generating Custom Dashboard...'
+                        bat 'node reports/generate-dashboard.js'
+
+                        echo 'Generating PDF Report...'
+                        bat 'node reports/generate-pdf.js'
                     }
                 }
             }
@@ -82,8 +120,10 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'playwright-report/**, test-results/**', allowEmptyArchive: true
+            // Archive test results, reports, and dashboard
+            archiveArtifacts artifacts: 'playwright-report/**, test-results/**, reports/dashboard.html, reports/test-report.pdf', allowEmptyArchive: true
 
+            // Publish Playwright default HTML report
             publishHTML([
                 allowMissing: true,
                 alwaysLinkToLastBuild: true,
@@ -93,14 +133,15 @@ pipeline {
                 reportName: 'Playwright HTML Report'
             ])
 
-            // publishHTML([
-            //     allowMissing: true,
-            //     alwaysLinkToLastBuild: true,
-            //     keepAll: true,
-            //     reportDir: 'playwright-custom-report',
-            //     reportFiles: 'dashboard.html',
-            //     reportName: 'Custom Dashboard Report'
-            // ])
+            // Publish Custom Dashboard Report
+            publishHTML([
+                allowMissing: true,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: 'reports',
+                reportFiles: 'dashboard.html',
+                reportName: 'Custom Dashboard Report'
+            ])
         }
     }
 }
